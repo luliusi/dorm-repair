@@ -15,9 +15,13 @@ app.get('/', async (_req, res) => {
     res.status(500).send('DB error');
   }
 });
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
 // 挂载认证路由
 const authRouter = require('./routes/auth');
 app.use('/api', authRouter);
+
+const repairRouter = require('./routes/repair');
+app.use('/api', repairRouter);
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
